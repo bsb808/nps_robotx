@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+
+<launch>
+
+  <env name="ROSCONSOLE_CONFIG_FILE" value="$(find robotx_gazebo)/config/custom_rosconsole.conf"/>
+  
+  <!-- For setting debug level to debug -->
+  <!--<env name="ROSCONSOLE_CONFIG_FILE" 
+       value="$(find kingfisher_gazebo)/config/custom_rosconsole.conf"/>
+   -->
+  <!-- Command line arguments -->
+
+  <arg name="world" default="sandisland_buoys.world" />
+  <arg name="name" default="WAMV" />
+
+  <!-- Initial USV location and attitude-->
+  <arg name="x" default="0" />
+  <arg name="y" default="0" />
+  <arg name="z" default="0.1" />
+  <arg name="P" default="0" />
+  <arg name="R" default="0" />
+  <arg name="Y" default="3.0" />
+
+
+  <param name="use_sim_time" value="true" />
+  <!-- Start Gazebo with the world file -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find robotx_gazebo)/worlds/$(arg world)"/>
+    <arg name="verbose" value="true"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+  </include>
+
+  <!-- Load robot model -->
+  <arg name="urdf" default="$(find nps_robotx)/urdf/nps_wamv.xacro"/>
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(arg urdf)"/>
+
+  <!-- Spawn model in Gazebo -->
+  <node name="spawn_model" pkg="gazebo_ros" type="spawn_model"
+	args="-x $(arg x) -y $(arg y) -z $(arg z) 
+	      -R $(arg R) -P $(arg P) -Y $(arg Y)
+	      -urdf -param robot_description -model wamv"/>
+  <!-- Driving with joystick -->
+  <include file="$(find usv_utils)/launch/usv_diffdrive.launch"/>
+
+</launch>
