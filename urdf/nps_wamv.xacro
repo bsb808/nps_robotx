@@ -22,9 +22,14 @@
   <xacro:include filename="$(find nps_robotx)/urdf/front_camera_wamv.xacro" />
   <xacro:wamv_camera name="wamv_front_camera"/>
 
+    <!-- Add simulated Multibeam -->
+    <xacro:include filename="$(find nps_robotx)/urdf/multibeam_wamv.xacro" />
+    <xacro:multibeam_wamv name="multibeam_wamv"/>
+
    <!-- Add simulated GPS -->
   <xacro:include filename="$(find nps_robotx)/urdf/gps_wamv.xacro" />
   <xacro:gps_wamv name="gps_wamv"/>
+
   
   <!-- Add Simulated IMU -->
   <xacro:include filename="$(find nps_robotx)/urdf/imu_wamv.xacro" />
@@ -33,5 +38,32 @@
   <!-- Add P3D ground truth -->
   <xacro:include filename="$(find nps_robotx)/urdf/p3d_wamv.xacro" />
   <xacro:p3d_wamv name="p3d_wamv"/>
+
+
+<!--<gazebo reference="scan">
+    <sensor type="gpu_ray" name="multibeam">
+        <visualize>true</visualize>
+        <update_rate>10</update_rate>
+        <ray>
+            <scan>
+                <horizontal>
+                    <samples>256</samples>
+                    <resolution>1</resolution>
+                    <min_angle>-1.0472</min_angle>
+                    <max_angle>1.0472</max_angle>
+                </horizontal>
+            </scan>
+            <range>
+                <min>0.2</min>
+                <max>70</max>
+                <resolution>0.02</resolution>
+            </range>
+        </ray>
+        <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_gpu_laser.so">
+            <topicName>/kayak/multibeam/scan</topicName>
+            <frameName>scan</frameName>
+        </plugin>
+    </sensor>
+</gazebo>-->
   
 </robot>

@@ -1,0 +1,14 @@
+<launch>
+
+
+    <include file="$(find nps_robotx)/launch/nps_sandisland.launch" />
+    <include file="$(find nps_robotx)/launch/wamv_localization.launch" />
+
+    <rosparam command="load" file="$(find multibeam_process)/config/scanmapper_config.yaml" />
+
+    <node name="scanmapper_node" pkg="multibeam_process" type="scanmapper_node"/>
+
+    <node name="rviz" pkg="rviz" type="rviz"  args="-d $(find multibeam_process)/config/mapping_config.rviz"/>
+
+
+</launch>

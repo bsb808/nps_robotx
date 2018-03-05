@@ -5,19 +5,20 @@
       <plugin name="gps_plugin_${name}" filename="libhector_gazebo_ros_gps.so">
 	<updateRate>1.0</updateRate>
 	<alwaysOn>true</alwaysOn>
-	<bodyName>base_link</bodyName>
-	<frameId>base_link</frameId>
+        <bodyName>gps</bodyName>
+        <frameId>gps</frameId>
 	<topicName>fix</topicName>
-	<velocityTopicName>vel</velocityTopicName>
+        <velocityTopicName>fix_velocity</velocityTopicName>
 
 	<!-- Location of origin of Gazebo Sand Island map -->
 	<referenceLatitude>21.30996</referenceLatitude>
 	<referenceLongitude>-157.8901</referenceLongitude>
 	<referenceAltitude>0.0</referenceAltitude>
+        <referenceHeading>90</referenceHeading>
 
 	<offset>0.0 0.0 0.0</offset>
 	<drift>0.0 0.0 0.0</drift>
-	<gaussianNoise>0.1 0.1 0.1</gaussianNoise>
+        <gaussianNoise>0.01 0.01 0.05</gaussianNoise>
 
 	<velocityOffset>0.0 0.0 0.0</velocityOffset>
 	<velocityDrift>0.0 0.0 0.0</velocityDrift>
