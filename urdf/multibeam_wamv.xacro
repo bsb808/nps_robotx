@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:macro name="multibeam_wamv" params="name">
+      <gazebo reference="scan">
+          <sensor type="gpu_ray" name="multibeam">
+              <visualize>true</visualize>
+              <update_rate>10</update_rate>
+              <ray>
+                  <scan>
+                      <horizontal>
+                          <samples>256</samples>
+                          <resolution>1</resolution>
+                          <min_angle>-1.0472</min_angle>
+                          <max_angle>1.0472</max_angle>
+                      </horizontal>
+                  </scan>
+                  <range>
+                      <!-- Minimum distance of the beam -->
+                      <min>0.2</min>
+                      <!-- Maximum distance of the beam -->
+                      <max>70</max>
+                      <!-- Linear resolution of the beam -->
+                      <resolution>0.02</resolution>
+                  </range>
+              </ray>
+              <plugin name="multibeam_simulator" filename="libgazebo_ros_gpu_laser.so">
+                  <topicName>multibeam/scan</topicName>
+                  <frameName>scan</frameName>
+              </plugin>
+          </sensor>
+      </gazebo>
+  </xacro:macro>
+</robot>
+
