@@ -100,7 +100,7 @@
                 },
                 "mouse_pub_topic": {
                   "type": "repr",
-                  "repr": "u'/wamv_camera_front/image_raw/compressed_mouse_left'"
+                  "repr": "u'/front_camera/image_raw_mouse_left'"
                 },
                 "num_gridlines": {
                   "type": "repr",
@@ -120,7 +120,7 @@
                 },
                 "topic": {
                   "type": "repr",
-                  "repr": "u'/wamv_camera_front/image_raw/compressed'"
+                  "repr": "u'/front_camera/image_raw'"
                 },
                 "publish_click_location": {
                   "type": "repr",
@@ -137,8 +137,8 @@
       "keys": {
         "geometry": {
           "type": "repr(QByteArray.hex)",
-          "repr(QByteArray.hex)": "QtCore.QByteArray('01d9d0cb000200000000087b0000003f00000aeb000003490000087b0000006400000aeb0000034900000001000000000780')",
-          "pretty-print": "     { ?   I { d   I     "
+          "repr(QByteArray.hex)": "QtCore.QByteArray('01d9d0cb00020000000004c400000034000007340000033e000004c400000059000007340000033e00000000000000000780')",
+          "pretty-print": "       4 4 >   Y 4 >     "
         },
         "state": {
           "type": "repr(QByteArray.hex)",
