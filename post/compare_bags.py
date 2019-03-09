@@ -1,13 +1,22 @@
 import rosbag
 import tf
+import os
 
-fnames = ['baseline_2019-01-04-14-49-35.bag',
+# For all bag files in a directory
+d = '/home/bsb/vrx_ws/src'
+fnames = []
+for f in os.listdir(d):
+    if f.endswith(".bag"):
+        fnames.append(os.path.join(d,f))
+
+'''fnames = ['baseline_2019-01-04-14-49-35.bag',
           'upward_force_only_2019-01-04-15-17-26.bag',
           'cylinder_v1_2019-01-04-16-09-47.bag',
           'y_leftright_2019-01-04-17-14-01.bag',
           'x_center_2019-01-04-17-20-32.bag',
           'x_center_n4_2019-01-04-17-23-33.bag',
           'final_pr_2019-01-04-17-32-16.bag']
+'''
 '''
 fnames = ['x_center_2019-01-04-17-20-32.bag',
           'x_center_n4_2019-01-04-17-23-33.bag']
@@ -17,6 +26,8 @@ fnames = ['x_center_2019-01-04-17-20-32.bag',
 figure(1)
 clf()
 figure(2)
+clf()
+figure(3)
 clf()
 
 for fname in fnames:
@@ -29,7 +40,7 @@ for fname in fnames:
     z = []
     r = []
     p = []
-    y = []
+    yaw = []
 
     for topic, msg, t in bag.read_messages(topics=['/gazebo/model_states']):
         # Assume that the WAMV is the last entry in the array
@@ -45,7 +56,7 @@ for fname in fnames:
                                                          pose.orientation.w))
         r.append(euler[0]*180.0/pi)
         p.append(euler[1]*180.0/pi)
-        y.append(euler[2]*180.0/pi)
+        yaw.append(euler[2]*180.0/pi)
 
     bag.close()
 
@@ -54,6 +65,7 @@ for fname in fnames:
     xlabel('Time [s]')
     ylabel('Heave [m]')
     grid(True)
+    
     figure(2)
     subplot(211)
     plot(tt,r)
@@ -65,6 +77,17 @@ for fname in fnames:
     ylabel('Pitch [deg]')
     xlabel('Time [s]')
 
+    figure(3)
+    subplot(211)
+    plot(tt,x)
+    ylabel('X [m]')
+    grid(True)
+    subplot(212)
+    plot(tt,y)
+    ylabel('Y [m]')
+    grid(True)
+    xlabel('Time [s]')
+    
 figure(1)
 legend()
     

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+
+	<!-- Record bag -->
+	 <node pkg="rosbag" type="record" name="rosbag_record"
+	 args="record -o /home/developer/vrx_ws/src/wamv_nosync -a" />
+
+	 <include file="$(find vrx_gazebo)/launch/sandisland.launch"/>
+</launch>
