@@ -79,6 +79,8 @@ if [ -z "$DOCER_OPTS" ]; then
 	DOCKER_OPTS=
 fi
 DOCKER_OPTS="--mount type=bind,source=/home/bsb/vrx_ws/src,target=/home/developer/vrx_ws/src"
+#DOCKER_OPTS="${DOCKER_OPTS} --mount type=bind,source=/home/bsb/vrx_nosync_ws,target=/home/developer/vrx_nosync_ws"
+DOCKER_OPTS="${DOCKER_OPTS} --device=/dev/ttyUSB0"
 
 # Example: Bind mount a local repository on the host machine:
 #DOCKER_OPTS="--mount type=bind,source=path_to_local_repo,target=/home/developer/vrx_ws/src/vrx"
