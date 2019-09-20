@@ -1,0 +1,5 @@
+
+
+# Add these lines to the VRX dockerfile
+
+RUN sudo apt install -y iputils-ping nano
