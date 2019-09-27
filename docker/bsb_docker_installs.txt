@@ -1,5 +1,8 @@
 
+# Remember to comment out copying over the VRX source to avoid recompile!
 
 # Add these lines to the VRX dockerfile
-
-RUN sudo apt install -y iputils-ping nano
+RUN sudo apt update \
+ && sudo apt install -y \
+ iputils-ping nano \
+ && sudo apt -y dist-upgrade

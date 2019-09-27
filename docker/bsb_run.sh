@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-./run_w_mount.sh -n vrx
+./run_w_mount.sh -n vrx_nvidia
