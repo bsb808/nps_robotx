@@ -6,3 +6,13 @@ RUN sudo apt update \
  && sudo apt install -y \
  iputils-ping nano \
  && sudo apt -y dist-upgrade
+
+RUN sudo apt update \
+ && sudo apt install -y ros-melodic-rqt-robot-plugins
+
+RUN sudo apt update \
+ && sudo apt install -y ros-melodic-effort-controllers
+
+# Make a directory for uuv_ws
+WORKDIR /home/$USER
+RUN mkdir -p uuv_ws/src/vrx
